@@ -9,19 +9,22 @@ print("---------------------------")
 
 #Find number of months
 numberMonths = len(budget_df)
-print(numberMonths)
+print('Total Months: ' + str(numberMonths))
 
 #Find Total Amounnt over whole period
 Total = budget_df["Profit/Losses"].sum()
-print(Total)
+print('Total: ' + "$" + str(Total))
 
 list_change = []
 i = 1
 j = len(budget_df)
-
 while i<j:
     change = budget_df["Profit/Losses"][i] - budget_df["Profit/Losses"][i-1]
-    
+    list_change.append(change)
+    i += 1
+
+
+
 
 
 
