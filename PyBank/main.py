@@ -26,20 +26,29 @@ while i<j:
 avg_change = sum(list_change) / len(list_change)
 print('Average Change: ' + "$" + str(round(avg_change, 2)))
 
-#Find Greatest increase in profits
+#Adding a row
+first = [0]
+change_amt = first + list_change
+budget_df["Amount Changed"] = change_amt
+
+#Find Greatest increase/decrease in profits
 max_increase = max(list_change)
 min_decrease = min(list_change)
-i = 1
-j = len(budget_df)
-while i<j:
-    max_month_inc = (budget_df["Date"][i] == max_increase)
-    min_month_dec = (budget_df["Date"][i] == min_decrease)
+
+#Find corresponding row
+max_row = budget_df[budget_df["Amount Changed"]==max_increase]
+min_row = budget_df[budget_df["Amount Changed"]==min_decrease]
+
+#Find Date 
+max_month_inc = max_row.iloc[0,0]
+min_month_dec = min_row.iloc[0,0]
 
 print('Greatest Increase in Profits: ' + max_month_inc + ' $' + str(max_increase))
-
-#Find Greatest decrease in losses
-
 print('Greatest Decrease in Losses: ' + min_month_dec + ' $' + str(min_decrease))
+
+#Create txt file
+os.chdir('../PyBank/Analysis')
+
 
 
 
