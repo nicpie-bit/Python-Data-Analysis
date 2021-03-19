@@ -1,8 +1,10 @@
 import csv
 import pandas as pd
+import sys
 
 #Path to collect data
 budget_df = pd.read_csv("Resources/budget_data.csv")
+sys.stdout = open('Analysis/analysis.ext', 'w')
 
 print("Financial Analysis")
 print("---------------------------")
@@ -47,7 +49,7 @@ print('Greatest Increase in Profits: ' + max_month_inc + ' $' + str(max_increase
 print('Greatest Decrease in Losses: ' + min_month_dec + ' $' + str(min_decrease))
 
 #Create txt file
-os.chdir('../PyBank/Analysis')
+sys.stdout.close()
 
 
 
