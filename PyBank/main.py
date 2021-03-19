@@ -4,7 +4,7 @@ import sys
 
 #Path to collect data
 budget_df = pd.read_csv("Resources/budget_data.csv")
-sys.stdout = open('Analysis/analysis.ext', 'w')
+sys.stdout = open('Analysis/analysis.txt', 'w')
 
 print("Financial Analysis")
 print("---------------------------")
@@ -51,8 +51,13 @@ print('Greatest Decrease in Losses: ' + min_month_dec + ' $' + str(min_decrease)
 #Create txt file
 sys.stdout.close()
 
-
-
+#Print in Terminal
+with open('Analysis/analysis.txt', 'r') as fileOpened:
+    #text = f.read()
+    #print(text)
+    #f.close()
+    readAll = fileOpened.read()
+print(fileOpened.closed)
 
 
 
