@@ -1,11 +1,11 @@
 import csv
 import os
 import pandas as pd
-import sys
 
 #Path to collect data
 budget_df = pd.read_csv("Resources/budget_data.csv")
-sys.stdout = open('Analysis/analysis.txt', 'w')
+
+file = os.path.join("Analysis", "budget_analysis.txt")
 
 print("Financial Analysis")
 print("---------------------------")
@@ -49,16 +49,23 @@ min_month_dec = min_row.iloc[0,0]
 print('Greatest Increase in Profits: ' + max_month_inc + ' $' + str(max_increase))
 print('Greatest Decrease in Losses: ' + min_month_dec + ' $' + str(min_decrease))
 
+output = (
+    f"Financial Analysis\n"
+    f"----------------\n"
+    f"Total Months: {numberMonths}\n"
+    f"Total: ${Total}\n"
+    f"Average Change: ${avg_change}\n"
+    f"Greatest Increase in Profits: {max_month_inc} {max_increase}\n"
+    f"Greatest Decrease in Losses: {min_month_dec} {min_decrease}\n"
+)
 #Create txt file
-sys.stdout.close()
 
 os.chdir('../PyBank/Analysis')
 
 #Print in Terminal
-with open('analysis.txt', 'r') as f:
-    contents = f.read()
-    print(contents)
-    f.close()
+with open('budget_analysis.txt', 'w') as f:
+    f.write(output)
+    
 
 
 
