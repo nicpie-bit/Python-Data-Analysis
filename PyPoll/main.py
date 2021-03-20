@@ -1,12 +1,12 @@
 import csv
 import os
 import pandas as pd
-import sys
 
 #Path to collect data
 election_df = pd.read_csv("Resources/election_data1.csv")
 election_df = pd.DataFrame(election_df)
-sys.stdout = open('Analysis/analysis.txt', 'w')
+
+file = os.path.join("Analysis", "poll_analysis.txt")
 
 print("Election Results")
 print("------------------------")
@@ -36,7 +36,7 @@ print("Li: " + str(li_per) + "%" + " (" + str(li_vote) + ")")
 print("O'Tooley: " + str(otooley_per) + "%" + " (" + str(otooley_vote) + ")")
 
 #Winner
-votes = [khan_per, correy_per, li_per, otooley_per]
+votes = [khan_per, correy_per, li_per, otooley_per] #votes = [int(khan_vote), ....]  #winner = max(votes)
 max_vote = votes[0]
 for item in votes:
     if item > max_vote:
@@ -45,13 +45,22 @@ winners = votes_per_candidate.keys()
 winner = winners[0]
 print("Winner: " + str(winner))
 
+output = (
+    f"Election Results\n"
+    f"---------------------\n"
+    f"Total Votes: {total_count}\n"
+    f"Khan: {khan_per}% ({khan_vote})\n"
+    f"Correy: {correy_per}% ({correy_vote})\n"
+    f"Li: {li_per}% ({li_vote})\n"
+    f"O'Tooley: {otooley_per}% ({otooley_vote})\n"
+    f"Winner: {winner}\n"
+)
+
 #Create txt file
-sys.stdout.close()
+
 
 os.chdir('../PyPoll/Analysis')
 
 #Print in Terminal
-with open('analysis.txt', 'r') as f:
-    contents = f.read()
-    print(contents)
-    f.close()
+with open('poll_analysis.txt', 'w') as f:
+    f.write(output)
