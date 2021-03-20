@@ -1,4 +1,5 @@
 import csv
+import os
 import pandas as pd
 import sys
 
@@ -51,13 +52,15 @@ print('Greatest Decrease in Losses: ' + min_month_dec + ' $' + str(min_decrease)
 #Create txt file
 sys.stdout.close()
 
+os.chdir('../PyBank/Analysis')
+
 #Print in Terminal
-with open('Analysis/analysis.txt', 'r') as fileOpened:
-    #text = f.read()
-    #print(text)
-    #f.close()
-    readAll = fileOpened.read()
-print(fileOpened.closed)
+with open('analysis.txt', 'r') as f:
+    text = f.read()
+    print(text)
+    f.close()
+    #readAll = fileOpened.read()
+#print(fileOpened.closed)
 
 
 
