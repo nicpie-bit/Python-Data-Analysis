@@ -14,6 +14,7 @@ total_count = len(election_df)
 
 #Percent per Candidate
 percent_per_candidate = election_df["Candidate"].value_counts(normalize = True)
+votes_per_candidate = election_df["Candidate"].value_counts()
 percent_per_candidate = [i*100 for i in percent_per_candidate]
 khan_per = round(percent_per_candidate[0], 2)
 correy_per = round(percent_per_candidate[1], 2)
@@ -33,7 +34,11 @@ print("Li: " + str(li_per) + "%" + " (" + str(li_vote) + ")")
 print("O'Tooley: " + str(otooley_per) + "%" + " (" + str(otooley_vote) + ")")
 
 #Winner
-max_vote = max(percent_per_candidate)
-
-print(max_vote)
-#print("Winner: " + str(max_vote))
+votes = [khan_per, correy_per, li_per, otooley_per]
+max_vote = votes[0]
+for item in votes:
+    if item > max_vote:
+        max_vote = item
+winners = votes_per_candidate.keys()
+winner = winners[0]
+print("Winner: " + str(winner))
