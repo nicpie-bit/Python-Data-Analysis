@@ -1,10 +1,12 @@
 import csv
+import os
 import pandas as pd
 import sys
 
 #Path to collect data
 election_df = pd.read_csv("Resources/election_data1.csv")
 election_df = pd.DataFrame(election_df)
+sys.stdout = open('Analysis/analysis.txt', 'w')
 
 print("Election Results")
 print("------------------------")
@@ -42,3 +44,14 @@ for item in votes:
 winners = votes_per_candidate.keys()
 winner = winners[0]
 print("Winner: " + str(winner))
+
+#Create txt file
+sys.stdout.close()
+
+os.chdir('../PyPoll/Analysis')
+
+#Print in Terminal
+with open('analysis.txt', 'r') as f:
+    contents = f.read()
+    print(contents)
+    f.close()

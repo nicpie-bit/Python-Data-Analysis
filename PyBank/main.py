@@ -56,11 +56,9 @@ os.chdir('../PyBank/Analysis')
 
 #Print in Terminal
 with open('analysis.txt', 'r') as f:
-    text = f.read()
-    print(text)
+    contents = f.read()
+    print(contents)
     f.close()
-    #readAll = fileOpened.read()
-#print(fileOpened.closed)
 
 
 
